@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="TestAssemblyOnlyModels" assembly="TestAssemblyOnlyModels">
+  <class name="Address">
+    <id name="Id">
+      <generator class="native"></generator>
+    </id>
+    <property name="Line1"></property>
+    <property name="Line2"></property>
+    <property name="City"></property>
+    <property name="State"></property>
+    <property name="PostalCode"></property>
+  </class>
+</hibernate-mapping>
