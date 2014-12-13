@@ -3,6 +3,10 @@ Usage
 --------------------------------------------------------------------------------
 [/h|/?]                            -Help
 
+/c:<config-file-name>              -Specifies NHibernate config file to use
+
+/k:<connectionString-key>          -Specifies connection string key to use
+
 /c:<path-to-hibernate-config>      -Specifies NHibernate config file to use
 
 [/a:<assembly[;assembly2...]>]     -Paths to assemblies that contain embedded

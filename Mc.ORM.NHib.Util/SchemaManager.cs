@@ -47,7 +47,8 @@ namespace Mc.ORM.NHib.Util
     /// </summary>
     public class SchemaManager
     {
-        private string ConnectionString = "Server=local;User ID=leetchi;Password=leetchi;Database=leetchi;Trusted_Connection=False;";
+        //private string ConnectionString = "Server=local;User ID=leetchi;Password=leetchi;Database=leetchi;Trusted_Connection=False;";
+        //private const string connectionStringKey = "connection.connection_string";
         /// <summary>
         /// Stores assemblies for future resolution
         /// </summary>
@@ -67,7 +68,7 @@ namespace Mc.ORM.NHib.Util
                     if (Configuration == null)
                         throw new ArgumentException("Could not create ISessionFactory because there is no Configuration");
 
-                    _sessionFactory = FluentNHibernate.Cfg.Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(ConnectionString))
+                    _sessionFactory = Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory)))
                         .ProxyFactoryFactory<NHibernate.ByteCode.Castle.ProxyFactoryFactory>().BuildSessionFactory();
                 }
 
@@ -118,7 +119,7 @@ namespace Mc.ORM.NHib.Util
         /// </summary>
         /// <returns>string containing the DDL script for updating the schema</returns>
         public string Update()
-        {            
+        {
             var sqlText = new StringBuilder();
 
             try
@@ -262,7 +263,7 @@ namespace Mc.ORM.NHib.Util
 
                         trans.Commit();
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {

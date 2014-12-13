@@ -36,6 +36,18 @@ namespace Mc.ORM.NHib.Util
     public class SchemaManagerOptions
     {
         /// <summary>
+        /// Configuration connection string Name
+        /// </summary>
+        public string ConfigName { get; set; }
+        /// <summary>
+        /// Working Directory
+        /// </summary>
+        public string WorkingDirectory { get; set; }
+        /// <summary>
+        /// Connection string key
+        /// </summary>
+        public string ConnectionStringKey { get; set; }
+        /// <summary>
         /// Path to the NHibernate configuration file
         /// </summary>
         public string ConfigFile { get; set; }

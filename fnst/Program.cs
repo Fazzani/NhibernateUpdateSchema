@@ -40,7 +40,7 @@ namespace fnst
 
         private static Operation _operation = Operation.Create;
         private static bool _verbose = false;
-        private static bool _debug = true;
+        private static bool _debug = false;
         private static bool _license = false;
         private static bool _help = false;
 
@@ -91,20 +91,24 @@ namespace fnst
 
         static OptionSet RegisterOptions(SchemaManagerOptions options)
         {
-            var os = new OptionSet();
-            
-            os.Add("c:", c => options.ConfigFile = Path.GetFullPath(c));
-            os.Add("a:", a => options.MappingAssemblies = a.Split(';').Select(Path.GetFullPath).ToList());
-            os.Add("d:", d => options.MappingDirectories = d.Split(';').Select(Path.GetFullPath).ToList());
-            os.Add("f:", f => options.FluentAssemblies = f.Split(';').Select(Path.GetFullPath).ToList());
-            os.Add("m:", m => options.ModelAssemblies = m.Split(';').Select(Path.GetFullPath).ToList());
-            os.Add("g:", g => options.CsvDatasets = g.Split(';').Select(Path.GetFullPath).ToList());
-            os.Add("s", s => options.Mode = (s != null) ? SchemaManagerMode.Silent : SchemaManagerMode.Execute);
-            os.Add("o:", o => _operation = (Operation)Enum.Parse(typeof(Operation), o));
-            os.Add("v", v => _verbose = (v != null));
-            os.Add("b", b => _debug = (b != null));
-            os.Add("L", L => _license = (L != null));
-            os.Add("h|?", h => _help = (h != null));
+            var os = new OptionSet
+            {
+                {"c:", c => options.ConfigFile = c},
+                {"w:", w => options.WorkingDirectory = Path.GetFullPath(w)},
+                {"k:", k => options.ConnectionStringKey = k},
+                {"n:", n => options.ConfigName = Path.GetFullPath(n)},
+                {"a:", a => options.MappingAssemblies = a.Split(';').Select(Path.GetFullPath).ToList()},
+                {"d:", d => options.MappingDirectories = d.Split(';').Select(Path.GetFullPath).ToList()},
+                {"f:", f => options.FluentAssemblies = f.Split(';').Select(Path.GetFullPath).ToList()},
+                {"m:", m => options.ModelAssemblies = m.Split(';').Select(Path.GetFullPath).ToList()},
+                {"g:", g => options.CsvDatasets = g.Split(';').Select(Path.GetFullPath).ToList()},
+                {"s", s => options.Mode = (s != null) ? SchemaManagerMode.Silent : SchemaManagerMode.Execute},
+                {"o:", o => _operation = (Operation) Enum.Parse(typeof (Operation), o)},
+                {"v", v => _verbose = (v != null)},
+                {"b", b => _debug = (b != null)},
+                {"L", L => _license = (L != null)},
+                {"h|?", h => _help = (h != null)}
+            };
 
             return os;
         }
