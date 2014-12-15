@@ -93,6 +93,11 @@ namespace fnst
             }
         }
 
+        /// <summary>
+        /// Register Options
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         static OptionSet RegisterOptions(SchemaManagerOptions options)
         {
             var os = new OptionSet
@@ -117,6 +122,10 @@ namespace fnst
             return os;
         }
 
+        /// <summary>
+        /// Execute
+        /// </summary>
+        /// <param name="options"></param>
         static void Execute(SchemaManagerOptions options)
         {
             var sm = new SchemaManager(options);
@@ -145,11 +154,19 @@ namespace fnst
                 sm.AddDatasets();
         }
 
+        /// <summary>
+        /// Print Error
+        /// </summary>
+        /// <param name="ex"></param>
         static void PrintError(Exception ex)
         {
             Console.WriteLine("Error encountered: " + ex.Message);
         }
 
+        /// <summary>
+        /// Print Options
+        /// </summary>
+        /// <param name="options"></param>
         static void PrintOptions(SchemaManagerOptions options)
         {
             Console.WriteLine(options.ConfigFile);
@@ -179,6 +196,10 @@ namespace fnst
             }
         }
 
+        /// <summary>
+        /// Print ResourceFile
+        /// </summary>
+        /// <param name="fileName"></param>
         static void PrintResourceFile(string fileName)
         {
             var asm = Type.GetType("fnst.Program").Assembly;
@@ -189,12 +210,18 @@ namespace fnst
             }
         }
 
+        /// <summary>
+        /// Print NoArgs
+        /// </summary>
         static void PrintNoArgs()
         {
             PrintResourceFile("fnst.HelpCommand.txt");
         }
     }
 
+    /// <summary>
+    /// DataBase Operations 
+    /// </summary>
     internal enum Operation
     {
         Create = 0,
