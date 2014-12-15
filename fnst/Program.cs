@@ -40,7 +40,11 @@ namespace fnst
 
         private static Operation _operation = Operation.Create;
         private static bool _verbose = false;
+#if DEBUG
+        private static bool _debug = true;
+#else
         private static bool _debug = false;
+#endif
         private static bool _license = false;
         private static bool _help = false;
 
@@ -57,7 +61,7 @@ namespace fnst
                     return;
                 }
 
-                os.Parse(args);                
+                os.Parse(args);
 
                 if (_debug)
                 {
@@ -82,7 +86,7 @@ namespace fnst
                     Console.ReadKey();
                 }
 
-            } 
+            }
             catch (Exception ex)
             {
                 PrintError(ex);
@@ -134,7 +138,7 @@ namespace fnst
             if (!string.IsNullOrEmpty(script))
             {
                 if (options.Mode == SchemaManagerMode.Silent || _verbose)
-                    Console.WriteLine(script);                
+                    Console.WriteLine(script);
             }
 
             if (options.CsvDatasets != null && options.CsvDatasets.Any())
@@ -150,7 +154,7 @@ namespace fnst
         {
             Console.WriteLine(options.ConfigFile);
 
-            if(options.MappingAssemblies != null)
+            if (options.MappingAssemblies != null)
                 foreach (var a in options.MappingAssemblies)
                     Console.WriteLine(a);
 
@@ -158,7 +162,7 @@ namespace fnst
                 foreach (var d in options.MappingDirectories)
                     Console.WriteLine(d);
 
-            if(options.ModelAssemblies != null)
+            if (options.ModelAssemblies != null)
                 foreach (var m in options.ModelAssemblies)
                     Console.WriteLine(m);
 

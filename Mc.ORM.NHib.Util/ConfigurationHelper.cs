@@ -27,7 +27,7 @@ namespace Mc.ORM.NHib.Util
             switch (configSource)
             {
                 case ConfigSourceEnum.FromAppSttings:
-                    return config.AppSettings.Settings[connectionStringKey].Value;
+                    return config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings[connectionStringKey].Value].ConnectionString;
                 case ConfigSourceEnum.FromConnectionStringSection:
                     return config.ConnectionStrings.ConnectionStrings[connectionStringKey].ConnectionString;
             }
@@ -50,11 +50,7 @@ namespace Mc.ORM.NHib.Util
                 workingdirectory = Environment.CurrentDirectory;
             if (string.IsNullOrEmpty(configFileName) && configSource == ConfigSourceEnum.FromAppSttings)
             {
-                configFileName = Path.Combine(workingdirectory, "AppSettings.config");
-                if (!File.Exists(configFileName))
-                    configFileName = Path.Combine(workingdirectory, "Web.config");
-                if (!File.Exists(configFileName))
-                    configFileName = Path.Combine(workingdirectory, "AppSettingsDefaults.config");
+                configFileName = Path.Combine(workingdirectory, "Web.config");
                 if (!File.Exists(configFileName))
                     throw new ApplicationException("Config File not found");
             }
