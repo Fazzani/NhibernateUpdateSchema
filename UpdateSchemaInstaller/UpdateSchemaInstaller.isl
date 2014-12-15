@@ -342,7 +342,6 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{75568CA0-7DFC-4C26-A483-6967570FFB02}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>NHibernate.ByteCode.Castle.dll</td><td>{E05A1785-601E-4689-ACA9-D6972A2625D9}</td><td>INSTALLDIR</td><td>2</td><td/><td>nhibernate.bytecode.castle.d</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{A972FADC-F4BF-4AB2-8E8C-F27E7E0C163F}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>fnst.Primary_output</td><td>{91C14AD1-ECE0-4242-9A5E-E35301E32822}</td><td>INSTALLDIR</td><td>2</td><td/><td>fnst.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -1871,7 +1870,6 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
-		<row><td>AlwaysInstall</td><td>NHibernate.ByteCode.Castle.dll</td></row>
 		<row><td>AlwaysInstall</td><td>WebsiteComponent</td></row>
 		<row><td>AlwaysInstall</td><td>fnst.Primary_output</td></row>
 	</table>
@@ -1889,7 +1887,6 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>fnst.primary_output</td><td>fnst.Primary_output</td><td>fnst.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;fnst&gt;|Built</td><td>3</td><td/></row>
-		<row><td>nhibernate.bytecode.castle.d</td><td>NHibernate.ByteCode.Castle.dll</td><td>NHIBER~1.DLL|NHibernate.ByteCode.Castle.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Fazzani\Documents\GitHub\NhibernateUpdateSchema\fnst\bin\Release\NHibernate.ByteCode.Castle.dll</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2034,7 +2031,6 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_76A77675_CE3A_416A_9692_2A7D3A2199EF_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>NHibernate.ByteCode.Castle.dll</td><td/><td/><td>_CAF0C9A9_64AE_40A9_88A6_F4FBB27C363A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_F2A4923C_59E2_49D1_B0F9_9D7D8E761057_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>fnst.Primary_output</td><td/><td/><td>_4447DD43_BB9D_490F_A4E8_CA3D18F1C6C8_FILTER</td><td/><td/><td/><td/></row>
 	</table>
