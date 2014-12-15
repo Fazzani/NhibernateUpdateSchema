@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <PublishUrlHistory>..\InstallClickOnce\install\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://updateschemaclickonce.azurewebsites.net/install/|http://updateschemaclickonce.azurewebsites.net/</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartArguments>-c:hibernate.cfg.xml -f:Leetchi.Model.dll -a:Leetchi.Model.dll -v</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>-c:hibernate.cfg.xml -f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /k:Leetchi.ConnectionStringName /w:C:/dev/LeetchiRepository/Code\Leetchi.Web\bin</StartArguments>
+  </PropertyGroup>
+</Project>
