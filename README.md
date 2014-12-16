@@ -1,14 +1,9 @@
-NhibernateUpdateSchema
-======================
-
-Nhibernate Update Schema commande line tool
-
 
 Usage
 --------------------------------------------------------------------------------
 [/h|/?]                            -Help
 
-/w:                                -Specifies the working directory target to use (the current directory is the default)
+/io:<sql-file-name>                -Specifies sql file output
 
 /c:<config-file-name>              -Specifies NHibernate config file to use
 
