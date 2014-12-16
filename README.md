@@ -5,11 +5,9 @@ Usage
 
 /io:<sql-file-name>                -Specifies sql file output
 
-/c:<config-file-name>              -Specifies NHibernate config file to use
-
 /k:<connectionString-key>          -Specifies connection string key to use
 
-/c:<path-to-hibernate-config>      -Specifies NHibernate config file to use
+/c:<path-to-hibernate-config>      -Specifies NHibernate config file to use (depricated)
 
 [/a:<assembly[;assembly2...]>]     -Paths to assemblies that contain embedded
                                     .hbm.xml files
