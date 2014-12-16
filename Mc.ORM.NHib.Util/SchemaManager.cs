@@ -47,8 +47,6 @@ namespace Mc.ORM.NHib.Util
     /// </summary>
     public class SchemaManager
     {
-        //private string ConnectionString = "Server=local;User ID=leetchi;Password=leetchi;Database=leetchi;Trusted_Connection=False;";
-        //private const string connectionStringKey = "connection.connection_string";
         /// <summary>
         /// Stores assemblies for future resolution
         /// </summary>
@@ -82,7 +80,7 @@ namespace Mc.ORM.NHib.Util
                 {
                     if (Configuration == null)
                         throw new ArgumentException("Could not create ISessionFactory because there is no Configuration");
-                    
+
                     _sessionFactory = DefaultConfiguration.BuildSessionFactory();
                 }
 
@@ -110,11 +108,14 @@ namespace Mc.ORM.NHib.Util
                     _configuration.SetProperty("adonet.batch_size", "500");
                     _configuration.SetProperty("proxyfactory.factory_class", "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
                 }
-                
+
                 return _configuration;
             }
         }
 
+        /// <summary>
+        /// Default Configuration
+        /// </summary>
         protected Configuration DefaultConfiguration
         {
             get
@@ -145,19 +146,6 @@ namespace Mc.ORM.NHib.Util
         /// <param name="options">Options that drive how schema is exported or updated</param>
         public SchemaManager(SchemaManagerOptions options)
         {
-            //if (string.IsNullOrEmpty(options.ConfigFile))
-            //    options.ConfigFile = Path.Combine(options.WorkingDirectory, "hibernate.cfg.xml");
-            //Configuration = new Configuration();
-            //try
-            //{
-            //    Configuration.Configure(options.ConfigFile);
-
-            //}
-            //catch (Exception)
-            //{
-            //    throw new InvalidDataException("ConfigFile not valid");
-            //}
-
             Options = options;
 
             AssemblyCache = new Dictionary<string, Assembly>();

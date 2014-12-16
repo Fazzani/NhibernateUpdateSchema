@@ -26,9 +26,10 @@
 
 
 using System;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.IO;
-
+using System.Text;
 using Mono.Options;
 
 using Mc.ORM.NHib.Util;
@@ -80,16 +81,19 @@ namespace fnst
                 {
                     Execute(options);
                 }
-                if (_debug)
-                {
-                    Console.WriteLine("The end");
-                    Console.ReadKey();
-                }
 
             }
             catch (Exception ex)
             {
                 PrintError(ex);
+            }
+            finally
+            {
+                if (_debug)
+                {
+                    Console.WriteLine("The end");
+                    Console.ReadKey();
+                }
             }
         }
 
@@ -164,8 +168,8 @@ namespace fnst
                     Console.WriteLine(script);
                 if (!string.IsNullOrEmpty(options.SQLFileName) && !string.IsNullOrEmpty(options.WorkingDirectory))
                 {
-                    var writer = File.CreateText(Path.Combine(options.WorkingDirectory, options.SQLFileName));
-                    writer.WriteAsync(script);
+                    Stream stream = new FileStream(Path.Combine(options.WorkingDirectory, options.SQLFileName), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    stream.Write(Encoding.UTF8.GetBytes(script), 0, script.Length);
                 }
             }
 
