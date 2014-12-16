@@ -8,7 +8,7 @@ Usage
 --------------------------------------------------------------------------------
 [/h|/?]                            -Help
 
-/w:                                -Specifies the working directory target to use
+/w:                                -Specifies the working directory target to use (the current directory is the default)
 
 /c:<config-file-name>              -Specifies NHibernate config file to use
 
