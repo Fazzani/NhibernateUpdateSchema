@@ -80,9 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HelpCommand.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +107,7 @@
     <None Include="App.Release.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
