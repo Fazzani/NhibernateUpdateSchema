@@ -8,6 +8,8 @@ Usage
 --------------------------------------------------------------------------------
 [/h|/?]                            -Help
 
+/w:                                -Specifies the working directory target to use
+
 /c:<config-file-name>              -Specifies NHibernate config file to use
 
 /k:<connectionString-key>          -Specifies connection string key to use
