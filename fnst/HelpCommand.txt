@@ -3,6 +3,8 @@ Usage
 --------------------------------------------------------------------------------
 [/h|/?]                            -Help
 
+/io:<sql-file-name>                -Specifies sql file output
+
 /c:<config-file-name>              -Specifies NHibernate config file to use
 
 /k:<connectionString-key>          -Specifies connection string key to use

@@ -53,6 +53,21 @@ namespace Mc.ORM.NHib.Util
         /// Stores assemblies for future resolution
         /// </summary>
         private Dictionary<string, Assembly> AssemblyCache { get; set; }
+        private FluentConfiguration _fluentConfiguration;
+
+        public FluentConfiguration FluentConfiguration
+        {
+            get
+            {
+                if (_fluentConfiguration == null)
+                {
+                    _fluentConfiguration =
+                        Fluently.Configure()
+                            .ProxyFactoryFactory<NHibernate.ByteCode.Castle.ProxyFactoryFactory>();
+                }
+                return _fluentConfiguration;
+            }
+        }
 
         /// <summary>
         /// Initialized ISessionFactory
@@ -67,20 +82,57 @@ namespace Mc.ORM.NHib.Util
                 {
                     if (Configuration == null)
                         throw new ArgumentException("Could not create ISessionFactory because there is no Configuration");
-
-                    _sessionFactory = Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory)))
-                        .ProxyFactoryFactory<NHibernate.ByteCode.Castle.ProxyFactoryFactory>().BuildSessionFactory();
+                    
+                    _sessionFactory = DefaultConfiguration.BuildSessionFactory();
                 }
 
                 return _sessionFactory;
             }
-            set { _sessionFactory = value; }
         }
 
+        private Configuration _configuration;
         /// <summary>
         /// NHibernate Congfiguration
         /// </summary>
-        protected Configuration Configuration { get; set; }
+        protected Configuration Configuration
+        {
+            get
+            {
+                if (_configuration == null)
+                {
+                    _configuration = FluentConfiguration.BuildConfiguration();
+                    _configuration.SetProperty("connection.connection_string", ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory));
+                    _configuration.SetProperty("dialect", "NHibernate.Dialect.MsSql2005Dialect");
+                    _configuration.SetProperty("show_sql", "false");
+                    _configuration.SetProperty("connection.provider", "NHibernate.Connection.DriverConnectionProvider");
+                    _configuration.SetProperty("connection.driver_class", "NHibernate.Driver.SqlClientDriver");
+                    _configuration.SetProperty("connection.release_mode", "auto");
+                    _configuration.SetProperty("adonet.batch_size", "500");
+                    _configuration.SetProperty("proxyfactory.factory_class", "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
+                }
+                
+                return _configuration;
+            }
+        }
+
+        protected Configuration DefaultConfiguration
+        {
+            get
+            {
+                var configuration = new Configuration();
+                configuration.SetProperty("connection.connection_string",
+                    ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory));
+                configuration.SetProperty("dialect", "NHibernate.Dialect.MsSql2005Dialect");
+                configuration.SetProperty("show_sql", "false");
+                configuration.SetProperty("connection.provider", "NHibernate.Connection.DriverConnectionProvider");
+                configuration.SetProperty("connection.driver_class", "NHibernate.Driver.SqlClientDriver");
+                configuration.SetProperty("connection.release_mode", "auto");
+                configuration.SetProperty("adonet.batch_size", "500");
+                configuration.SetProperty("proxyfactory.factory_class",
+                    "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
+                return configuration;
+            }
+        }
 
         /// <summary>
         /// Options that drive how schema is exported or updated
@@ -93,8 +145,19 @@ namespace Mc.ORM.NHib.Util
         /// <param name="options">Options that drive how schema is exported or updated</param>
         public SchemaManager(SchemaManagerOptions options)
         {
-            Configuration = new Configuration();
-            Configuration.Configure(options.ConfigFile);
+            //if (string.IsNullOrEmpty(options.ConfigFile))
+            //    options.ConfigFile = Path.Combine(options.WorkingDirectory, "hibernate.cfg.xml");
+            //Configuration = new Configuration();
+            //try
+            //{
+            //    Configuration.Configure(options.ConfigFile);
+
+            //}
+            //catch (Exception)
+            //{
+            //    throw new InvalidDataException("ConfigFile not valid");
+            //}
+
             Options = options;
 
             AssemblyCache = new Dictionary<string, Assembly>();
@@ -124,6 +187,7 @@ namespace Mc.ORM.NHib.Util
 
             try
             {
+
                 var updater = Options.Settings != null
                     ? new SchemaUpdate(Configuration, Options.Settings)
                     : new SchemaUpdate(Configuration);

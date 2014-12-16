@@ -103,14 +103,15 @@ namespace fnst
             var os = new OptionSet
             {
                 {"c:", c => options.ConfigFile = c},
+                {"io:", io => options.SQLFileName = io},
                 {"w:", w => options.WorkingDirectory = Path.GetFullPath(w)},
                 {"k:", k => options.ConnectionStringKey = k},
-                {"n:", n => options.ConfigName = Path.GetFullPath(n)},
-                {"a:", a => options.MappingAssemblies = a.Split(';').Select(Path.GetFullPath).ToList()},
-                {"d:", d => options.MappingDirectories = d.Split(';').Select(Path.GetFullPath).ToList()},
-                {"f:", f => options.FluentAssemblies = f.Split(';').Select(Path.GetFullPath).ToList()},
-                {"m:", m => options.ModelAssemblies = m.Split(';').Select(Path.GetFullPath).ToList()},
-                {"g:", g => options.CsvDatasets = g.Split(';').Select(Path.GetFullPath).ToList()},
+                {"n:", n => options.ConfigName = GetPath(n,options.WorkingDirectory)},
+                {"a:", a => options.MappingAssemblies = a.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
+                {"d:", d => options.MappingDirectories = d.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
+                {"f:", f => options.FluentAssemblies = f.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
+                {"m:", m => options.ModelAssemblies = m.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
+                {"g:", g => options.CsvDatasets = g.Split(';').Select(x=>GetPath(x,options.WorkingDirectory)).ToList()},
                 {"s", s => options.Mode = (s != null) ? SchemaManagerMode.Silent : SchemaManagerMode.Execute},
                 {"o:", o => _operation = (Operation) Enum.Parse(typeof (Operation), o)},
                 {"v", v => _verbose = (v != null)},
@@ -120,6 +121,19 @@ namespace fnst
             };
 
             return os;
+        }
+
+        /// <summary>
+        /// Get path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="workingDirectory"></param>
+        /// <returns></returns>
+        private static string GetPath(string path, string workingDirectory)
+        {
+            return string.IsNullOrEmpty(workingDirectory)
+                ? Path.GetFullPath(path)
+                : Path.Combine(workingDirectory, path);
         }
 
         /// <summary>
@@ -148,6 +162,11 @@ namespace fnst
             {
                 if (options.Mode == SchemaManagerMode.Silent || _verbose)
                     Console.WriteLine(script);
+                if (!string.IsNullOrEmpty(options.SQLFileName) && !string.IsNullOrEmpty(options.WorkingDirectory))
+                {
+                    var writer = File.CreateText(Path.Combine(options.WorkingDirectory, options.SQLFileName));
+                    writer.WriteAsync(script);
+                }
             }
 
             if (options.CsvDatasets != null && options.CsvDatasets.Any())

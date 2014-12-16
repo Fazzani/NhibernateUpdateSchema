@@ -15,6 +15,6 @@
     <StartArguments>-c:hibernate.cfg.xml -f:Leetchi.Model.dll -a:Leetchi.Model.dll -v</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-c:hibernate.cfg.xml -f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /k:Leetchi.ConnectionStringName /w:C:/dev/LeetchiRepository/Code\Leetchi.Web\bin</StartArguments>
+    <StartArguments>-f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /k:Leetchi.ConnectionStringName /w:C:\Users\Fazzani\Desktop\TestUpdateSchema /io:output.sql</StartArguments>
   </PropertyGroup>
 </Project>

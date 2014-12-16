@@ -53,6 +53,11 @@ namespace Mc.ORM.NHib.Util
         public string ConfigFile { get; set; }
 
         /// <summary>
+        /// Sql file name output
+        /// </summary>
+        public string SQLFileName { get; set; }
+
+        /// <summary>
         /// Allows clients to specify overrides to the default NHibernate settings
         /// </summary>
         public Settings Settings { get; set; }
@@ -67,7 +72,7 @@ namespace Mc.ORM.NHib.Util
         /// <summary>
         /// List of assembly names that contain embedded mapping files
         /// </summary>
-        public IList<string> MappingAssemblies { get; set; }
+        public IEnumerable<string> MappingAssemblies { get; set; }
 
         /// <summary>
         /// List of assembly names that contain the actual model objects. This allows for 
@@ -76,19 +81,19 @@ namespace Mc.ORM.NHib.Util
         /// external source.  These assemblies are loaded into the application domain prior to 
         /// adding the mappings to the NHibernate Configuration object.
         /// </summary>
-        public IList<string> ModelAssemblies { get; set; }
+        public IEnumerable<string> ModelAssemblies { get; set; }
 
         /// <summary>
         /// The set of directories that contain NHibernate .hbm.xml files. This can
         /// be used in conjunction with ModelAssemblies in order to load mapping files
         /// from the filesystem, as oppossed to from an assembly.
         /// </summary>
-        public IList<string> MappingDirectories { get; set; }
+        public IEnumerable<string> MappingDirectories { get; set; }
 
         /// <summary>
         /// List of assembly names that contain fluent mappings.
         /// </summary>
-        public IList<string> FluentAssemblies { get; set; }
+        public IEnumerable<string> FluentAssemblies { get; set; }
 
         /// <summary>
         /// List of CSV files containing datasets.
