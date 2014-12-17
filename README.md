@@ -9,6 +9,8 @@ Usage
 
 /k:<connectionString-key>          -Specifies connection string key to use
 
+/cv:<connectionString-key-value>   -Specifies connection string key value (override connectionString-key) to use
+
 /c:<path-to-hibernate-config>      -Specifies NHibernate config file to use
 
 [/a:<assembly[;assembly2...]>]     -Paths to assemblies that contain embedded

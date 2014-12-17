@@ -13,23 +13,25 @@ namespace Mc.ORM.NHib.Util
         /// <summary>
         /// Get Connection String
         /// </summary>
-        /// <param name="connectionStringKey">Connection string Key </param>
-        /// <param name="workingdirectory">Working directory</param>
-        /// <param name="configFileName">Config file path</param>
+        /// <param name="options"> </param>
         /// <param name="configSource">ConfigSourceEnum.FromAppSttings|ConfigSourceEnum.FromConnectionStringSection</param>
         /// <returns></returns>
-        public static string GetConnectionString(string connectionStringKey, string workingdirectory = "", string configFileName = "", ConfigSourceEnum configSource = ConfigSourceEnum.FromAppSttings)
+        public static string GetConnectionString(SchemaManagerOptions options, ConfigSourceEnum configSource = ConfigSourceEnum.FromAppSttings)
         {
-            configFileName = GetFileConfigPath(connectionStringKey, workingdirectory, configFileName, ref configSource);
+            options.ConfigName = GetFileConfigPath(options.WorkingDirectory, options.ConfigName, ref configSource);
 
-            var configMap = new ExeConfigurationFileMap { ExeConfigFilename = configFileName };
+            var configMap = new ExeConfigurationFileMap { ExeConfigFilename = options.ConfigName };
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
             switch (configSource)
             {
                 case ConfigSourceEnum.FromAppSttings:
-                    return config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings[connectionStringKey].Value].ConnectionString;
+                    if (!string.IsNullOrEmpty(options.ConnectionStringKeyValue))
+                        return config.ConnectionStrings.ConnectionStrings[options.ConnectionStringKeyValue].ConnectionString;
+                    return config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings[options.ConnectionStringKey].Value].ConnectionString;
                 case ConfigSourceEnum.FromConnectionStringSection:
-                    return config.ConnectionStrings.ConnectionStrings[connectionStringKey].ConnectionString;
+                    if (!string.IsNullOrEmpty(options.ConnectionStringKeyValue))
+                        return config.ConnectionStrings.ConnectionStrings[options.ConnectionStringKeyValue].ConnectionString;
+                    return config.ConnectionStrings.ConnectionStrings[options.ConnectionStringKey].ConnectionString;
             }
             return string.Empty;
         }
@@ -37,15 +39,12 @@ namespace Mc.ORM.NHib.Util
         /// <summary>
         /// Get file config path
         /// </summary>
-        /// <param name="connectionStringKey"></param>
         /// <param name="workingdirectory"></param>
         /// <param name="configFileName"></param>
         /// <param name="configSource"></param>
         /// <returns></returns>
-        private static string GetFileConfigPath(string connectionStringKey, string workingdirectory, string configFileName, ref ConfigSourceEnum configSource)
+        private static string GetFileConfigPath(string workingdirectory, string configFileName, ref ConfigSourceEnum configSource)
         {
-            if (string.IsNullOrEmpty(connectionStringKey))
-                throw new ArgumentNullException("connectionStringKey");
             if (string.IsNullOrEmpty(workingdirectory))
                 workingdirectory = Environment.CurrentDirectory;
             if (string.IsNullOrEmpty(configFileName) && configSource == ConfigSourceEnum.FromAppSttings)

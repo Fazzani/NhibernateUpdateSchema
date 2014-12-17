@@ -99,14 +99,7 @@ namespace Mc.ORM.NHib.Util
                 if (_configuration == null)
                 {
                     _configuration = FluentConfiguration.BuildConfiguration();
-                    _configuration.SetProperty("connection.connection_string", ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory));
-                    _configuration.SetProperty("dialect", "NHibernate.Dialect.MsSql2005Dialect");
-                    _configuration.SetProperty("show_sql", "false");
-                    _configuration.SetProperty("connection.provider", "NHibernate.Connection.DriverConnectionProvider");
-                    _configuration.SetProperty("connection.driver_class", "NHibernate.Driver.SqlClientDriver");
-                    _configuration.SetProperty("connection.release_mode", "auto");
-                    _configuration.SetProperty("adonet.batch_size", "500");
-                    _configuration.SetProperty("proxyfactory.factory_class", "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
+                    SetDefaultConfigProperty(_configuration);
                 }
 
                 return _configuration;
@@ -121,18 +114,23 @@ namespace Mc.ORM.NHib.Util
             get
             {
                 var configuration = new Configuration();
-                configuration.SetProperty("connection.connection_string",
-                    ConfigurationHelper.GetConnectionString(Options.ConnectionStringKey, Options.WorkingDirectory));
-                configuration.SetProperty("dialect", "NHibernate.Dialect.MsSql2005Dialect");
-                configuration.SetProperty("show_sql", "false");
-                configuration.SetProperty("connection.provider", "NHibernate.Connection.DriverConnectionProvider");
-                configuration.SetProperty("connection.driver_class", "NHibernate.Driver.SqlClientDriver");
-                configuration.SetProperty("connection.release_mode", "auto");
-                configuration.SetProperty("adonet.batch_size", "500");
-                configuration.SetProperty("proxyfactory.factory_class",
-                    "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
+                SetDefaultConfigProperty(configuration);
                 return configuration;
             }
+        }
+
+        private void SetDefaultConfigProperty(Configuration configuration)
+        {
+            configuration.SetProperty("connection.connection_string",
+                ConfigurationHelper.GetConnectionString(Options));
+            configuration.SetProperty("dialect", "NHibernate.Dialect.MsSql2005Dialect");
+            configuration.SetProperty("show_sql", "false");
+            configuration.SetProperty("connection.provider", "NHibernate.Connection.DriverConnectionProvider");
+            configuration.SetProperty("connection.driver_class", "NHibernate.Driver.SqlClientDriver");
+            configuration.SetProperty("connection.release_mode", "auto");
+            configuration.SetProperty("adonet.batch_size", "500");
+            configuration.SetProperty("proxyfactory.factory_class",
+                "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
         }
 
         /// <summary>
@@ -175,7 +173,6 @@ namespace Mc.ORM.NHib.Util
 
             try
             {
-
                 var updater = Options.Settings != null
                     ? new SchemaUpdate(Configuration, Options.Settings)
                     : new SchemaUpdate(Configuration);

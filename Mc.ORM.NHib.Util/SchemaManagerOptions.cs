@@ -48,6 +48,10 @@ namespace Mc.ORM.NHib.Util
         /// </summary>
         public string ConnectionStringKey { get; set; }
         /// <summary>
+        /// Connection string key value
+        /// </summary>
+        public string ConnectionStringKeyValue { get; set; }
+        /// <summary>
         /// Path to the NHibernate configuration file
         /// </summary>
         public string ConfigFile { get; set; }

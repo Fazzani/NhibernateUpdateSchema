@@ -108,6 +108,7 @@ namespace fnst
             {
                 {"c:", c => options.ConfigFile = c},
                 {"io:", io => options.SQLFileName = io},
+                {"cv:", cv => options.ConnectionStringKeyValue = cv},
                 {"w:", w => options.WorkingDirectory = Path.GetFullPath(w)},
                 {"k:", k => options.ConnectionStringKey = k},
                 {"n:", n => options.ConfigName = GetPath(n,options.WorkingDirectory)},
