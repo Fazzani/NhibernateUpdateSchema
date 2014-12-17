@@ -168,8 +168,10 @@ namespace fnst
                     Console.WriteLine(script);
                 if (!string.IsNullOrEmpty(options.SQLFileName) && !string.IsNullOrEmpty(options.WorkingDirectory))
                 {
-                    Stream stream = new FileStream(Path.Combine(options.WorkingDirectory, options.SQLFileName), FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                    stream.Write(Encoding.UTF8.GetBytes(script), 0, script.Length);
+                    using (Stream stream = new FileStream(Path.Combine(options.WorkingDirectory, options.SQLFileName), FileMode.Create, FileAccess.ReadWrite))
+                    {
+                        stream.Write(Encoding.UTF8.GetBytes(script), 0, script.Length);
+                    }
                 }
             }
 
