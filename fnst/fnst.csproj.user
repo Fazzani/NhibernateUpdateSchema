@@ -15,6 +15,6 @@
     <StartArguments>-f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /k:Leetchi.ConnectionStringName /w:C:\Users\Fazzani\Desktop\TestUpdateSchema /io:output.sql</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /cv:DevSQLDatabase /w:C:\Users\Fazzani\Desktop\TestUpdateSchema /io:output.sql</StartArguments>
+    <StartArguments>-f:Leetchi.Model.dll -a:Leetchi.Model.dll -v /o:Update /s /cv:DevSQLDatabase /md:C:\Users\Fazzani\Desktop\TestUpdateSchema /cd:C:\Users\Fazzani\Desktop\TestUpdateSchema\configs /io:output.sql</StartArguments>
   </PropertyGroup>
 </Project>

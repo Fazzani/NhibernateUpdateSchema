@@ -109,14 +109,15 @@ namespace fnst
                 {"c:", c => options.ConfigFile = c},
                 {"io:", io => options.SQLFileName = io},
                 {"cv:", cv => options.ConnectionStringKeyValue = cv},
-                {"w:", w => options.WorkingDirectory = Path.GetFullPath(w)},
+                {"md:", w => options.ModelDirectory = Path.GetFullPath(w)},
+                {"cd:", w => options.ConfigDirectory = Path.GetFullPath(w)},
                 {"k:", k => options.ConnectionStringKey = k},
-                {"n:", n => options.ConfigName = GetPath(n,options.WorkingDirectory)},
-                {"a:", a => options.MappingAssemblies = a.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
-                {"d:", d => options.MappingDirectories = d.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
-                {"f:", f => options.FluentAssemblies = f.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
-                {"m:", m => options.ModelAssemblies = m.Split(';').Select(x=>GetPath(x,options.WorkingDirectory))},
-                {"g:", g => options.CsvDatasets = g.Split(';').Select(x=>GetPath(x,options.WorkingDirectory)).ToList()},
+                {"n:", n => options.ConfigName = GetPath(n,options.ConfigDirectory)},
+                {"a:", a => options.MappingAssemblies = a.Split(';').Select(x=>GetPath(x,options.ModelDirectory))},
+                {"d:", d => options.MappingDirectories = d.Split(';').Select(x=>GetPath(x,options.ModelDirectory))},
+                {"f:", f => options.FluentAssemblies = f.Split(';').Select(x=>GetPath(x,options.ModelDirectory))},
+                {"m:", m => options.ModelAssemblies = m.Split(';').Select(x=>GetPath(x,options.ModelDirectory))},
+                {"g:", g => options.CsvDatasets = g.Split(';').Select(x=>GetPath(x,options.ModelDirectory)).ToList()},
                 {"s", s => options.Mode = (s != null) ? SchemaManagerMode.Silent : SchemaManagerMode.Execute},
                 {"o:", o => _operation = (Operation) Enum.Parse(typeof (Operation), o)},
                 {"v", v => _verbose = (v != null)},
@@ -167,9 +168,9 @@ namespace fnst
             {
                 if (options.Mode == SchemaManagerMode.Silent || _verbose)
                     Console.WriteLine(script);
-                if (!string.IsNullOrEmpty(options.SQLFileName) && !string.IsNullOrEmpty(options.WorkingDirectory))
+                if (!string.IsNullOrEmpty(options.SQLFileName) && !string.IsNullOrEmpty(options.ModelDirectory))
                 {
-                    using (Stream stream = new FileStream(Path.Combine(options.WorkingDirectory, options.SQLFileName), FileMode.Create, FileAccess.ReadWrite))
+                    using (Stream stream = new FileStream(Path.Combine(options.ModelDirectory, options.SQLFileName), FileMode.Create, FileAccess.ReadWrite))
                     {
                         stream.Write(Encoding.UTF8.GetBytes(script), 0, script.Length);
                     }

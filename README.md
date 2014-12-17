@@ -5,7 +5,9 @@ Usage
 
 /io:<sql-file-name>                -Specifies sql file output
 
-/c:<config-file-name>              -Specifies NHibernate config file to use
+/md:<model-directory>              - The model directory (the current directory by default)
+
+/cd:<config-directory>             - The configuration file directory (the current directory by default)
 
 /k:<connectionString-key>          -Specifies connection string key to use
 

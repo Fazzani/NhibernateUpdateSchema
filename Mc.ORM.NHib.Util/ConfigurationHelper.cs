@@ -18,7 +18,7 @@ namespace Mc.ORM.NHib.Util
         /// <returns></returns>
         public static string GetConnectionString(SchemaManagerOptions options, ConfigSourceEnum configSource = ConfigSourceEnum.FromAppSttings)
         {
-            options.ConfigName = GetFileConfigPath(options.WorkingDirectory, options.ConfigName, ref configSource);
+            options.ConfigName = GetFileConfigPath(options.ConfigDirectory, options.ConfigName, ref configSource);
 
             var configMap = new ExeConfigurationFileMap { ExeConfigFilename = options.ConfigName };
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);

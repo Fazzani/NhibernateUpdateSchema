@@ -40,9 +40,13 @@ namespace Mc.ORM.NHib.Util
         /// </summary>
         public string ConfigName { get; set; }
         /// <summary>
-        /// Working Directory
+        /// Model Directory
         /// </summary>
-        public string WorkingDirectory { get; set; }
+        public string ModelDirectory { get; set; }
+        /// <summary>
+        /// Configuration Directory
+        /// </summary>
+        public string ConfigDirectory { get; set; }
         /// <summary>
         /// Connection string key
         /// </summary>
