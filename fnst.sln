@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{93138104-A35F-4DC3-A622-D2AFF2FC4755}"
 	ProjectSection(SolutionItems) = preProject
 		Tests\TestData\hibernate.cfg.xml = Tests\TestData\hibernate.cfg.xml
@@ -25,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAssemblyWithFluentAddressBook", "Tests\TestData\TestAssemblyWithFluentAddressBook\TestAssemblyWithFluentAddressBook.csproj", "{05F661EB-DC0F-4E10-A84B-A925A4A0E704}"
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "UpdateSchemaInstaller", "UpdateSchemaInstaller\UpdateSchemaInstaller.isproj", "{8521CFF5-877D-4D58-B7CE-B4B17A140AB7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UpdateSchemaSetup", "UpdateSchemaSetup\UpdateSchemaSetup.vdproj", "{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,16 +129,21 @@ Global
 		{8521CFF5-877D-4D58-B7CE-B4B17A140AB7}.Release|Any CPU.Build.0 = SingleImage
 		{8521CFF5-877D-4D58-B7CE-B4B17A140AB7}.SingleImage|Any CPU.ActiveCfg = SingleImage
 		{8521CFF5-877D-4D58-B7CE-B4B17A140AB7}.SingleImage|Any CPU.Build.0 = SingleImage
+		{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}.CD_ROM|Any CPU.ActiveCfg = Release
+		{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}.Debug|Any CPU.ActiveCfg = Debug
+		{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}.DVD-5|Any CPU.ActiveCfg = Debug
+		{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}.Release|Any CPU.ActiveCfg = Release
+		{FAAB15A4-6A67-409A-B1F7-1DAA488237DB}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{69E3A5DC-8B81-4E19-B6D0-071439CAE1B9} = {F7CDF3FF-6EF4-4D1A-896D-CB89E0586088}
 		{50A8714A-69D8-460C-85DE-DD2D9063FA17} = {93138104-A35F-4DC3-A622-D2AFF2FC4755}
 		{A162AD9E-3858-4B57-9CD9-E4FA2C3FD58D} = {93138104-A35F-4DC3-A622-D2AFF2FC4755}
 		{99CE02DB-EA57-43E6-A319-93F7907F4488} = {93138104-A35F-4DC3-A622-D2AFF2FC4755}
 		{111EADDE-7B07-44D8-97A5-A19182E0391C} = {93138104-A35F-4DC3-A622-D2AFF2FC4755}
 		{05F661EB-DC0F-4E10-A84B-A925A4A0E704} = {93138104-A35F-4DC3-A622-D2AFF2FC4755}
-		{69E3A5DC-8B81-4E19-B6D0-071439CAE1B9} = {F7CDF3FF-6EF4-4D1A-896D-CB89E0586088}
 	EndGlobalSection
 EndGlobal
