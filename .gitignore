@@ -43,3 +43,4 @@ Temporary Items
 .apdisk
 /fnst/*.user
 /UpdateSchemaSetup/Debug
+/UpdateSchemaSetup/Debug/*.exe
