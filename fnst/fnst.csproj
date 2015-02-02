@@ -120,11 +120,11 @@
   </Target>
   -->
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
-    <CreateItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)'=='Mc.ORM.NHib.Util' And '%(Extension)'=='.dll'">
+    <!--<CreateItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)'=='Mc.ORM.NHib.Util' And '%(Extension)'=='.dll'">
       <Output ItemName="AssembliesToMerge" TaskParameter="Include" />
     </CreateItem>
     <Message Text="MERGING: @(AssembliesToMerge->'%(Filename)')" Importance="High" />
-    <Exec Command="..\Tools\ILMerge\ILMerge.exe /lib:$(OutputPath) /target:exe /targetplatform:v4,&quot;$(MSBuildToolsPath)&quot; /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(AssembliesToMerge->'&quot;%(FullPath)&quot;', ' ')" />
+    <Exec Command="..\Tools\ILMerge\ILMerge.exe /lib:$(OutputPath) /target:exe /targetplatform:v4,&quot;$(MSBuildToolsPath)&quot; /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(AssembliesToMerge->'&quot;%(FullPath)&quot;', ' ')" />-->
   </Target>
   <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
   <Target Name="AfterCompile" Condition="Exists('App.$(Configuration).config')">
